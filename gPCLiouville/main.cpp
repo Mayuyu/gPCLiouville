@@ -55,7 +55,7 @@ double exactSolution(double x, double v) {
 }
 
 int main(int argc, const char *argv[]) {
-    const double a = 0.06, b = 0.02;
+    const double a = 0.03, b = 0.02;
     TypeFunction leftP = leftPotential, rightP = rightPotential, init = initial,
     exactSolu = exactSolution;
     CollocationSolver test(1.5 + 0.5 * a, a, b, 1.0, leftP, rightP);

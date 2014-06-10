@@ -23,10 +23,13 @@ Eigen::MatrixXd CollocationSolver::spatialDiff() {
 
 void CollocationSolver::solveEquation() {
     for (int t = 0; t < timeSteps; t++) {
-//        auto tmp0 = mesh;
-//        auto tmp1 = spatialDiff();
-//        mesh += deltaT * tmp1;
-//        mesh = tmp0 + 0.5 * deltaT * (tmp1 + spatialDiff());
+//        auto tmp = mesh;
+//        mesh += deltaT * spatialDiff();
+//        mesh = 0.75 * tmp + 0.25 * mesh + 0.25 * deltaT * spatialDiff();
+//        mesh = 1/3 * tmp + 2/3 * mesh + 2/3 * deltaT * spatialDiff();
+//        auto tmp = mesh;
+//        mesh += deltaT * spatialDiff();
+//        mesh = 0.5 * tmp + 0.5 * mesh + 0.5 * deltaT * spatialDiff();
         mesh += deltaT * spatialDiff();
     }
 }
