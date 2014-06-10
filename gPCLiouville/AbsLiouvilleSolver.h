@@ -37,13 +37,14 @@ public:
         }
         return -1;
     }
-    T positiveFluxDiff(int i, int j);
-    T negativeFluxDiff(int i, int j);
+    T positiveXFluxDiff(int i, int j);
+    T negativeXFluxDiff(int i, int j);
+    T positiveVfluxDiff(int i, int j);
+    T negativeVfluxDiff(int i, int j);
     virtual void solveEquation() = 0;
 };
-
 template <class T>
-T AbsLiouvilleSolver<T>::positiveFluxDiff(int i, int j) {
+T AbsLiouvilleSolver<T>::positiveXFluxDiff(int i, int j) {
     T uMinus = mesh(i, j), uPlus;
     auto x = getX(i), v = getV(j);
     auto potentialDiff = leftPotential(x - 0.5 * deltaX, v) - rightPotential(x - 0.5 * deltaX, v);
@@ -60,9 +61,8 @@ T AbsLiouvilleSolver<T>::positiveFluxDiff(int i, int j) {
     }
     return (uMinus - uPlus) / deltaX;
 }
-
 template <class T>
-T AbsLiouvilleSolver<T>::negativeFluxDiff(int i, int j) {
+T AbsLiouvilleSolver<T>::negativeXFluxDiff(int i, int j) {
     T uMinus, uPlus = mesh(i, j);
     double x = getX(i), v = getV(j);
     double potentialDiff = leftPotential(x + 0.5 * deltaX, v) - rightPotential(x + 0.5 * deltaX, v);
@@ -79,6 +79,12 @@ T AbsLiouvilleSolver<T>::negativeFluxDiff(int i, int j) {
     }
     return (uMinus - uPlus) / deltaX;
 }
-
-
+template <class T>
+T AbsLiouvilleSolver<T>::positiveVfluxDiff(int i, int j) {
+    return (mesh(i, j) - mesh(i, j - 1)) / deltaV;
+}
+template <class T>
+T AbsLiouvilleSolver<T>::negativeVfluxDiff(int i, int j) {
+    return (mesh(i, j + 1) - mesh(i, j)) / deltaV;
+}
 #endif
