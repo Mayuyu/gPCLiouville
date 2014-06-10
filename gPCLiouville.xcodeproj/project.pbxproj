@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3098D4AA1946EFBF00DA643A /* CollocationSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3098D4A81946EFBF00DA643A /* CollocationSolver.cpp */; };
 		30A6B8471945A69000E467ED /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30A6B8461945A69000E467ED /* main.cpp */; };
 		30A6B8491945A69000E467ED /* gPCLiouville.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 30A6B8481945A69000E467ED /* gPCLiouville.1 */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3098D4A81946EFBF00DA643A /* CollocationSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollocationSolver.cpp; sourceTree = "<group>"; };
+		3098D4A91946EFBF00DA643A /* CollocationSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollocationSolver.h; sourceTree = "<group>"; };
 		30A6B8431945A69000E467ED /* gPCLiouville */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gPCLiouville; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A6B8461945A69000E467ED /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		30A6B8481945A69000E467ED /* gPCLiouville.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = gPCLiouville.1; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 			children = (
 				30A6B8461945A69000E467ED /* main.cpp */,
 				30A6B9B91945A9E500E467ED /* AbsLiouvilleSolver.h */,
+				3098D4A91946EFBF00DA643A /* CollocationSolver.h */,
+				3098D4A81946EFBF00DA643A /* CollocationSolver.cpp */,
 				30A6B8481945A69000E467ED /* gPCLiouville.1 */,
 			);
 			path = gPCLiouville;
@@ -1072,6 +1077,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3098D4AA1946EFBF00DA643A /* CollocationSolver.cpp in Sources */,
 				30A6B8471945A69000E467ED /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

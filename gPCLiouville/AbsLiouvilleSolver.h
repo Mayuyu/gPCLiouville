@@ -27,6 +27,12 @@ protected:
     TypeFunction leftPotential;
     TypeFunction rightPotential;
 public:
+    AbsLiouvilleSolver(double xLeft, double vBottom, double deltaX,
+                       double deltaV, double deltaT, double finalTime,
+                       TypeFunction leftPotential, TypeFunction rightPotential)
+    : xLeft(xLeft), vBottom(vBottom), deltaX(deltaX), deltaV(deltaV), deltaT(deltaT),
+    timeSteps(finalTime / deltaT), leftPotential(leftPotential), rightPotential(rightPotential) {}
+    
     double getX(int i) { return xLeft + i * deltaX; }
     double getV(int j) { return vBottom + j * deltaV; }
     int getMeshIndexOfV(double v) {
