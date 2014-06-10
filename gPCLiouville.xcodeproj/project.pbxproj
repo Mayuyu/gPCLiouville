@@ -352,6 +352,7 @@
 		30A6B9B61945A78400E467ED /* SuperLUSupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SuperLUSupport; sourceTree = "<group>"; };
 		30A6B9B71945A78400E467ED /* SVD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SVD; sourceTree = "<group>"; };
 		30A6B9B81945A78400E467ED /* UmfPackSupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UmfPackSupport; sourceTree = "<group>"; };
+		30A6B9B91945A9E500E467ED /* AbsLiouvilleSolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbsLiouvilleSolver.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				30A6B8461945A69000E467ED /* main.cpp */,
+				30A6B9B91945A9E500E467ED /* AbsLiouvilleSolver.h */,
 				30A6B8481945A69000E467ED /* gPCLiouville.1 */,
 			);
 			path = gPCLiouville;
