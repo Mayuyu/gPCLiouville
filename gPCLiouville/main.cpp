@@ -41,7 +41,7 @@ double initial(double x, double v) {
 double exactSolution(double x, double v) {
     if (x >= 0 && v < sqrt(0.4) && x < v) {
         return 1.0;
-    } else if (x >= 0 && x < 1 && v < 0 && v >0.5 * (x - sqrt(2.0 - x * x)) ) {
+    } else if (x >= 0 && x < 1 && v < 0 && v > 0.5 * (x - sqrt(2.0 - x * x)) ) {
         return 1.0;
     } else if (x <= 0 && v < x && v > -sqrt(0.6) && x < (1.0 - sqrt(0.6 - v * v) / sqrt(v * v + 0.4)) * v) {
         return 1.0;
@@ -55,13 +55,18 @@ double exactSolution(double x, double v) {
 }
 
 int main(int argc, const char *argv[]) {
-    const double a = 0.03, b = 0.02;
-    TypeFunction leftP = leftPotential, rightP = rightPotential, init = initial,
-    exactSolu = exactSolution;
-    CollocationSolver test(1.5 + 0.5 * a, a, b, 1.0, leftP, rightP);
-    test.initial(init);
+    const double a = 0.03, b = 0.0001;
+//    TypeFunction leftP = leftPotential, rightP = rightPotential, init = initial, exactSolu = exactSolution;
+    CollocationSolver test(1.5 + 0.5 * a, a, b, 1.0, leftPotential, rightPotential);
+    test.initial(initial);
     test.solveEquation();
-    cout << (test.getMesh() - test.exactSolution(exactSolu)).lpNorm<1>() / test.getMesh().size() << endl;
+    cout << (test.getMesh() - test.exactSolution(initial)).lpNorm<1>() / test.getMesh().size() << endl;
+//    Eigen::MatrixXd err = (test.getMesh() - test.exactSolution(initial));
+//    for (int i = 0; i < test.getRows(); i++) {
+//        for (int j = 0; j < test.getCols(); j++) {
+//                cout << i << " " << j << " " << err(i, j) << endl;
+//        }
+//    }
     return 0;
 }
 

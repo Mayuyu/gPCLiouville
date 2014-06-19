@@ -32,7 +32,8 @@ public:
                        TypeFunction leftPotential, TypeFunction rightPotential)
     : xLeft(xLeft), vBottom(vBottom), deltaX(deltaX), deltaV(deltaV), deltaT(deltaT),
     timeSteps(finalTime / deltaT), leftPotential(leftPotential), rightPotential(rightPotential) {}
-    
+    int getCols() { return mesh.cols(); }
+    int getRows() { return mesh.rows(); }
     double getX(int i) { return xLeft + i * deltaX; }
     double getV(int j) { return vBottom + j * deltaV; }
     int getMeshIndexOfV(double v) {
@@ -49,6 +50,9 @@ public:
     T negativeVfluxDiff(int i, int j);
     virtual void solveEquation() = 0;
 };
+
+
+
 template <class T>
 T AbsLiouvilleSolver<T>::positiveXFluxDiff(int i, int j) {
     T uMinus = mesh(i, j), uPlus;

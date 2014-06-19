@@ -33,8 +33,6 @@ public:
         int dim = 2 * bound / deltaSpatial + 1;
         mesh = Eigen::MatrixXd::Zero(dim, dim);
     }
-
-
     void initial(TypeFunction initial);
     void print() { std::cout << mesh << std::endl; }
     Eigen::MatrixXd getMesh() { return mesh; }

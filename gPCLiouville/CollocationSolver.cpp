@@ -14,8 +14,8 @@ Eigen::MatrixXd CollocationSolver::spatialDiff() {
         for (int j = 1; j < mesh.cols() - 1; j++) {
             double x = getX(i), v = getV(j);
             double gradV = (rightPotential(x - 0.5 * deltaX, v) - leftPotential(x + 0.5 * deltaX, v)) / deltaX;
-            tmp(i, j) = 0.5 * (-(v + fabs(v)) * positiveXFluxDiff(i, j) - (v - fabs(v)) * negativeXFluxDiff(i, j) +
-                        (gradV + fabs(gradV)) * positiveVfluxDiff(i, j) + (gradV - fabs(gradV)) * negativeVfluxDiff(i, j));
+            tmp(i, j) = 0.5 * (-(v + fabs(v)) * positiveXFluxDiff(i, j) - (v - fabs(v)) * negativeXFluxDiff(i, j) -
+                        (gradV + fabs(gradV)) * positiveVfluxDiff(i, j) - (gradV - fabs(gradV)) * negativeVfluxDiff(i, j));
         }
     }
     return tmp;
@@ -42,11 +42,32 @@ void CollocationSolver::initial(TypeFunction initial) {
     }
 }
 
-Eigen::MatrixXd CollocationSolver::exactSolution(TypeFunction exactSolution) {
+//Eigen::MatrixXd CollocationSolver::exactSolution(TypeFunction exactSolution) {
+//    Eigen::MatrixXd temp = Eigen::MatrixXd::Zero(mesh.rows(), mesh.cols());
+//    for (int i = 0; i < mesh.rows(); i++) {
+//        for (int j = 0; j < mesh.cols(); j++) {
+//            temp(i, j) = exactSolution(getX(i), getV(j));
+//        }
+//    }
+//    return temp;
+//}
+
+Eigen::MatrixXd CollocationSolver::exactSolution(TypeFunction initial) {
     Eigen::MatrixXd temp = Eigen::MatrixXd::Zero(mesh.rows(), mesh.cols());
     for (int i = 0; i < mesh.rows(); i++) {
         for (int j = 0; j < mesh.cols(); j++) {
-            temp(i, j) = exactSolution(getX(i), getV(j));
+            double x = getX(i), v = getV(j);
+            if (x > 0 && x < v && v > sqrt(0.4)) {
+                double v0 = sqrt(v * v - 0.4);
+                temp(i, j) = initial((x / v - 1.0) * v0, v0);
+            } else if (x < 0 && v < x) {
+                double v0 = -sqrt(v * v + 0.4);
+                temp(i, j) = initial((x / v - 1.0) * v0, v0);
+            } else if (x > 0 && x < v && v < sqrt(0.4)) {
+                temp(i, j) = initial(v - x, -v);
+            } else {
+                temp(i, j) = initial(x - v, v);
+            }
         }
     }
     return temp;
